@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* ====================== LOGIN PAGE ========================= */
+#login-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+#login-page h1 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 3rem;
+}
+
+#login-page input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    background: #f2f2f2;
+    border: none;
+    border-radius: 0px;
+    font-size: 25px;
+}
+
+#login-page button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+#login-page button:hover {
+    background: #45a049;
+}
+
+/* ====================== SIGNUP PAGE ======================== */
+#signup-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+#signup-page h1 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 3rem;
+}
+
+#signup-page input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    background: #f2f2f2;
+    border: none;
+    border-radius: 0px;
+    font-size: 25px;
+}
+
+#signup-page button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+#signup-page button:hover {
+    background: #45a049;
+}
+
+/* ====================== HOME PAGE ========================== */
+#home-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+#home-page h1 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 3rem;
+}
+
+#home-page p {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
+    <title>Authentication Stuff</title>
+</head>
+<body>
+    <div id="app">
+        <section id="signup-page" v-if="currentPage == 'signup-page'">
+            <h1>Signup</h1>
+            <input type="text" v-model="signupUsername" placeholder="Email">
+            <input type="password" v-model="signupPassword" placeholder="Password">
+            <button @click="changePage('login-page')">Back to Login</button>
+            <button @click="postUser">Create Account</button>
+            <p class="alert-message">{{ errorMessage }}</p>
+        </section>
+        <section id="login-page" v-if="currentPage == 'login-page'">
+            <h1>Login</h1>
+            <input type="text" v-model="loginUsername" placeholder="Email">
+            <input type="password" v-model="loginPassword" placeholder="Password">
+            <button @click="changePage('signup-page')">Create New Account</button>
+            <button @click="postLogin">Login</button>
+            <p class="alert-message">{{ errorMessage }}</p>
+        </section>
+        <section id="home-page" v-if="currentPage == 'home-page'">
+            <h1>Home</h1>
+            <p>Sussessfully logged in</p>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
