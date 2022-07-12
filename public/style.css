@@ -85,9 +85,12 @@
 
 /* ====================== HOME PAGE ========================== */
 #home-page {
-    width: 360px;
-    padding: 8% 0 0;
+    padding: 2% 0 0;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #home-page h1 {
@@ -100,4 +103,14 @@
     text-align: center;
     margin-top: 0;
     font-size: 1.5rem;
+}
+
+#t {
+    width: 600px;
+    height: 100px;
+    background-color: rgb(182, 182, 182);
+}
+
+#t:hover {
+    background-color: rgb(211, 211, 211);
 }

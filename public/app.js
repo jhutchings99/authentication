@@ -12,6 +12,15 @@ var app = new Vue({
         loginPassword: "",
 
         errorMessage: "",
+
+        currentUser: null,
+
+        workouts: [],
+
+        trackedWorkouts: [],
+        selectedWorkout: "",
+        selectedReps: "1",
+        currentWorkout: "",
     },
     methods: {
         changePage: function (page) {
@@ -30,7 +39,7 @@ var app = new Vue({
                 // logged in
                 console.log("logged in");
                 let data = await response.json();
-                console.log(data);
+                this.currentUser = data.username;
                 this.currentPage = "home-page"
             } else if (response.status == 401) {
                 // not logged in
@@ -130,8 +139,90 @@ var app = new Vue({
                 }, 5000);
             }
         },
+
+        // GET /workouts - Get all workouts
+        getWorkouts: async function () {
+            let response = await fetch(`${URL}/workouts`)
+
+            // Check if workouts were retrieved
+            if (response.status == 200) {
+                console.log("Successful workout retrieval");
+                let data = await response.json();
+                this.workouts = data;
+            } else if (response.status == 401) {
+                console.log("Unsuccessful workout retrieval");
+            } else {
+                console.log("error GETTING /workouts", response.status, response);
+            }
+        },
+
+        // POST /workouts - Create new workout
+        postWorkout: async function () {
+            let newWorkout = {
+                workout: this.currentWorkout,
+                reps: parseInt(this.selectedReps),
+                user: this.currentUser,
+            }
+            let response = await fetch(`${URL}/workouts`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newWorkout)
+            });
+
+            if (response.status == 201) {
+                console.log("Successful workout creation");
+                this.getWorkouts();
+            } else {
+                console.log("error POSTING /workouts", response.status, response);
+            }
+        },
+
+        // // Track selected workout
+        // addWorkout: function () {
+        //     let workout = {
+        //         workout: this.selectedWorkout,
+        //         reps: parseInt(this.selectedReps),
+        //     }
+        //     if (this.trackedWorkouts.length == 0) {
+        //         this.trackedWorkouts.push(workout);
+        //     } else {
+        //         for (let i = 0; i < this.trackedWorkouts.length; i++) {
+        //             if (this.trackedWorkouts[i].workout == this.selectedWorkout) {
+        //                 this.trackedWorkouts[i].reps += parseInt(this.selectedReps);
+        //                 return;
+        //             }
+        //         }
+        //         this.trackedWorkouts.push(workout);
+        //     }
+
+        //     this.selectedWorkout = "";
+        //     this.selectedReps = "1";
+        // },
+
+        workoutPage: function () {
+            this.currentPage = "workout-page";
+        },
+
+        // GET single workout by id
+        getSingleWorkout: async function (id) {
+            let response = await fetch(`${URL}/workouts/${id}`)
+
+            // Check if workout was retrieved
+            if (response.status == 200) {
+                this.currentWorkout = await response.json();
+                this.currentPage = "workout-page";
+            } else if (response.status == 401) {
+                console.log("Unsuccessful workout retrieval");
+            } else {
+                console.log("error GETTING /workouts", response.status, response);
+            }
+        }
     },
     created: function () {
         this.getLogin();
+        this.getWorkouts();
     }
 })

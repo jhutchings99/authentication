@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
     <title>Authentication Stuff</title>
 </head>
 <body>
@@ -31,6 +32,16 @@
         <section id="home-page" v-if="currentPage == 'home-page'">
             <h1>Home</h1>
             <p>Sussessfully logged in</p>
+            <select v-model="selectedWorkout">
+                <option v-for="workout in workouts">{{ workout }}</option>
+            </select>
+            <select v-model="selectedReps">
+                <option v-for="number in 100">{{ number }}</option>
+            </select>
+            <button @click="postWorkout()">Track Exercise</button>
+            <div>
+                <p v-for="(workout,index) in trackedWorkouts" id="t">{{ workout.workout }} : {{ workout.reps }}</p>
+            </div>
         </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
